@@ -1,23 +1,40 @@
 VBox, HBox, Label, Button, .text-field {
-    -fx-pref-width: 200px;
-    -fx-pref-height: 43px;
+    -fx-pref-width: 500px;
+    -fx-pref-height: 80px;
+}
+
+VBox, HBox {
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+Label, .text-field, .button {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-alignment: center;
 }
 
 VBox {
-    -fx-border-color: black;
+    -fx-border-color: #cccccc;
     -fx-border-width: 1px;
     -fx-alignment: center;
     -fx-padding: 5px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
 }
 
 .text-field {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
     -fx-padding: 5px;
-    -fx-border-color: black;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #aaa;
     -fx-border-width: 1px;
 }
 
 .text-field:focus {
-    -fx-border-color: blue;
+    -fx-border-color: #4285f4;
+    -fx-background-color: #ffffff;
 }
 
 .text-field:invalid{
@@ -25,9 +42,20 @@ VBox {
 }
 
 .button {
-    -fx-background-color: white;
-    -fx-border-color: black;
-    -fx-border-width: 1px;
-    -fx-padding: 5px;
+    -fx-background-color: linear-gradient(to bottom, #e0e0e0, #ffffff);
+    -fx-border-color: #999;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
+
+.button:hover {
+    -fx-background-color: #d6d6d6;
+    -fx-border-color: #555;
+}
+
+#labels {
+    -fx-background-color: #d6d6d6;
+}
+
+
 
