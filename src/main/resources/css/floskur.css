@@ -57,5 +57,14 @@ VBox {
     -fx-background-color: #d6d6d6;
 }
 
+.label {
+    -fx-font-size: 14px;
+}
+
+.label:italic {
+    -fx-font-style: italic;
+}
+
+
 
 

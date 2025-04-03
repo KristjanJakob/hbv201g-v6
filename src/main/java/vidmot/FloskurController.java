@@ -3,10 +3,17 @@ package vidmot;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.event.ActionEvent;
 import vinnsla.Floskur;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
+
 /**
  * Controller klasi sem að höndlar notendaviðmót fyrir flöskumóttökuna.
  * Klasinn sér um að taka inn inntak frá notendanum og vinnur svo úr þeim.
@@ -25,6 +32,9 @@ public class FloskurController {
 
     @FXML
     private TextField fxDosir, fxPlast, fxGler;
+
+    @FXML
+    private ListView<String> fxHistoryList;
 
     /** Handler fyrir að setja inn fjölda plast flaska **/
     @FXML
@@ -61,14 +71,46 @@ public class FloskurController {
         fxSumGreidaInput.setText(String.valueOf(samtalsDosir + samtalsPlast + samtalsGler));
         fxSumGreidaISK.setText(String.valueOf(samtalsISK));
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Kvittun");
-        alert.setHeaderText("Greiðsla mótekin");
-        alert.setContentText("Þú hefur fengið greitt fyrir " +
-                floskur.getSamtalsMagn() + " einingar\n" + "Plast: " + floskur.getFjoldiPlast() + "\n" + "Ál: " + floskur.getFjoldiDosir() + "\n" + "Gler: " + floskur.getFjoldiGler() + "\n" + "\n" +
-                "Samtals: " + floskur.getSamtalsISK() + " kr.");
-        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vidmot/kvittun-view.fxml"));
+            Parent root = loader.load();
+
+            KvittunController controller = loader.getController();
+            controller.setjaGildi(
+                    floskur.getFjoldiDosir(),
+                    floskur.getFjoldiPlast(),
+                    floskur.getFjoldiGler(),
+                    floskur.getSamtalsISK()
+            );
+
+            Stage kvittunarGluggi = new Stage();
+            kvittunarGluggi.setTitle("Kvittun");
+            kvittunarGluggi.setScene(new Scene(root));
+            kvittunarGluggi.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String kvittunText = String.format(
+                "Ál: %d | Plast: %d | Gler: %d → Samtals: %d kr.",
+                floskur.getFjoldiDosir(),
+                floskur.getFjoldiPlast(),
+                floskur.getFjoldiGler(),
+                floskur.getSamtalsISK()
+        );
+
+        if (fxHistoryList != null) {
+            fxHistoryList.getItems().add(0, kvittunText);
+
+            if (fxHistoryList.getItems().size() > 10) {
+                fxHistoryList.getItems().remove(10);
+            }
+        }
+
+
     }
+
 
     /** Handler til að búa til villuboð **/
     @FXML
@@ -152,10 +194,36 @@ public class FloskurController {
     /** Sýnir opnunartíma **/
     @FXML
     private void onOpnunartimi(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Opnunartími");
-        alert.setHeaderText("Flöskumótttaka Reykjavík");
-        alert.setContentText("Mánudaga - Föstudaga: 10:00 - 18:00\nLaugardaga: 12:00 - 16:00\nSunnudaga: Lokað");
-        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("opnunartimi-view.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Opnunartími");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /** Sýnir síðustu greiðslur **/
+    @FXML
+    private void onSidustuGreidslur(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("history-view.fxml"));
+            Parent root = loader.load();
+
+            HistoryController controller = loader.getController();
+
+            controller.setHistory(fxHistoryList.getItems());
+
+            Stage stage = new Stage();
+            stage.setTitle("Síðustu greiðslur");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

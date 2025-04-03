@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
@@ -12,9 +13,13 @@
 <VBox stylesheets="@../css/floskur.css" xmlns:fx="http://javafx.com/fxml" fx:controller="vidmot.FloskurController" spacing="10" alignment="CENTER">
     <HBox spacing="10">
         <VBox prefHeight="43.0" prefWidth="200.0"><Label text="Flöskumóttaka ♻️" /></VBox>
-        <Button text="Skoða opnunartíma 🕒" onAction="#onOpnunartimi" />
+        <Button text="Opnunartími 🕒" onAction="#onOpnunartimi" />
+        <Button text="Greiðslur" onAction="#onSidustuGreidslur" />
     </HBox>
 
+    <HBox alignment="CENTER">
+        <ListView fx:id="fxHistoryList" visible="false" managed="false" prefHeight="150" prefWidth="600" />
+    </HBox>
     <Separator orientation="HORIZONTAL" prefWidth="600" />
 
     <HBox spacing="10">

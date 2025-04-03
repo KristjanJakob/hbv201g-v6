@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="vidmot.KvittunController"
+      spacing="10" alignment="CENTER" stylesheets="@../css/floskur.css">
+
+    <Label text="Kvittun" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <HBox spacing="40">
+        <Label text="Tegund" style="-fx-font-weight: bold;" />
+        <Label text="Magn" style="-fx-font-weight: bold;" />
+    </HBox>
+
+    <HBox spacing="40" style="-fx-border-color: gray; -fx-border-width: 1 0 0 0;" />
+
+    <HBox spacing="20">
+        <Label text="Ál:" />
+        <Label fx:id="lblDosir" />
+    </HBox>
+
+    <HBox spacing="20">
+        <Label text="Plast:" />
+        <Label fx:id="lblPlast" />
+    </HBox>
+
+    <HBox spacing="20">
+        <Label text="Gler:" />
+        <Label fx:id="lblGler" />
+    </HBox>
+
+    <HBox spacing="40" style="-fx-border-color: gray; -fx-border-width: 1 0 0 0;" />
+
+    <HBox spacing="40">
+        <Label text="Samtals:" style="-fx-font-weight: bold; -fx-font-size: 24px;" />
+        <Label fx:id="lblSamtals" style="-fx-font-weight: bold; -fx-font-size: 24px;" />
+    </HBox>
+
+
+    <Label text="Gengið hefur verið frá greiðslu." style="-fx-font-style: italic;" />
+
+    <HBox alignment="CENTER_RIGHT">
+        <Button text="Loka" fx:id="lokaButton" onAction="#onLoka"
+                style="-fx-background-color: #f44336;
+               -fx-text-fill: white;
+               -fx-background-radius: 5;
+               -fx-padding: 8 16;
+               -fx-font-weight: bold;"
+                onMouseEntered="#onMouseOver"
+                onMouseExited="#onMouseExit" />
+
+    </HBox>
+
+</VBox>
+
