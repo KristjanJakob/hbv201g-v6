@@ -31,8 +31,7 @@ Ef þú notar **IntelliJ**:
    
 Eða:
 1. Opna terminal og klóna úr repp:
-   git clone https://github.com/KristjanJakob/Floskur.git
-   cd Floskur
+   git clone https://github.com/KristjanJakob/hbv201g-v6
 2. Keyra með Maven:
 		 mvn javafx:run
 
