@@ -8,8 +8,8 @@ JavaFX forrit sem er eins og flöskumóttaka.
  - **Ál**
  - **Plast**
  - **Gler**
-- Reikna og sýnir heildar endurgreiðslu.
-- Sýndu kvittun í glugga.
+- Reikna og sýna heildar endurgreiðslu.
+- Sýna kvittun í glugga.
 - Skoða síðustu 10 viðskipti (history).
 - Sýna opnunartíma með glugga.
 
@@ -19,6 +19,7 @@ JavaFX forrit sem er eins og flöskumóttaka.
 - JavaFX 21
 - FXML fyrir UI skipulag
 - Maven
+- IntelliJ
 
 ## Keyrðu verkefnið
 
