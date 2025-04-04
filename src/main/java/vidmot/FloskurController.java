@@ -116,11 +116,19 @@ public class FloskurController {
     @FXML
     private void onStafur(KeyEvent event) {
         TextField source = (TextField) event.getSource();
-        try {
-            int fjoldi = Integer.parseInt(source.getText());
-            if (fjoldi < 0) throw new NumberFormatException("Neikvæð tala");
+        String input = source.getText();
+
+        if (input.isEmpty()) {
             source.setStyle(null);
-            // uppfæra gildin í Floskur og UI
+            return;
+        }
+
+        try {
+            int fjoldi = Integer.parseInt(input);
+            if (fjoldi < 0) throw new NumberFormatException("Neikvæð tala");
+
+            source.setStyle(null);
+
             if (source == fxDosir) {
                 floskur.setFjoldiDosir(fjoldi);
             } else if (source == fxPlast) {
@@ -128,11 +136,13 @@ public class FloskurController {
             } else if (source == fxGler) {
                 floskur.setFjoldiGler(fjoldi);
             }
+
             uppfaeraUI();
         } catch (NumberFormatException e) {
-            source.setStyle("-fx-border-color:red;");
+            source.setStyle("-fx-border-color: red;");
         }
     }
+
 
     /** Uppfærir fjölda dósir og UI **/
     private void updateDosir() {
