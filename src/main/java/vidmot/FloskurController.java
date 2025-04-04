@@ -63,6 +63,15 @@ public class FloskurController {
     /** Handler fyrir að greiða fyrir flöskur og dósir **/
     @FXML
     protected void onGreida(ActionEvent actionEvent) {
+        if (!erInntakValid()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Villa í inntaki");
+            alert.setHeaderText(null);
+            alert.setContentText("Vinsamlegast fylltu inn réttar tölur áður en þú greiðir.");
+            alert.showAndWait();
+            return;
+        }
+
         samtalsDosir += floskur.getFjoldiDosir();
         samtalsPlast += floskur.getFjoldiPlast();
         samtalsGler += floskur.getFjoldiGler();
@@ -110,6 +119,22 @@ public class FloskurController {
 
 
     }
+
+    /** Handlerar til að tékka hvort input séu valid **/
+    private boolean erInntakValid() {
+        return erValid(fxDosir.getText()) && erValid(fxPlast.getText()) && erValid(fxGler.getText());
+    }
+
+    private boolean erValid(String text) {
+        if (text == null || text.trim().isEmpty()) return false;
+        try {
+            int value = Integer.parseInt(text.trim());
+            return value >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 
 
     /** Handler til að búa til villuboð **/
