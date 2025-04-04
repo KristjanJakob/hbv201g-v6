@@ -5,9 +5,9 @@ JavaFX forrit sem er eins og flöskumóttaka.
 ## Eiginleikar
 
 - Inntaks- og vinnslumagn af:
- - **Ál (Ál)**
- - **Plast (Plast)**
- - **Gler (Gler)**
+ - **Ál**
+ - **Plast**
+ - **Gler**
 - Reikna og sýnir heildar endurgreiðslu.
 - Sýndu kvittun í glugga.
 - Skoða síðustu 10 viðskipti (history).
