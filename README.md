@@ -28,3 +28,11 @@ Ef þú notar **IntelliJ**:
 1. Opnaðu verkefnið.
 2. Gakktu úr skugga um að JavaFX sé rétt sett upp.
 3. Runna með Maven.
+   
+Eða:
+1. Opna terminal og klóna úr repp:
+   git clone https://github.com/KristjanJakob/Floskur.git
+   cd Floskur
+2. Keyra með Maven:
+		 mvn javafx:run
+
