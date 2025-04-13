@@ -63,15 +63,34 @@ public class FloskurController {
     /** Handler fyrir að greiða fyrir flöskur og dósir **/
     @FXML
     protected void onGreida(ActionEvent actionEvent) {
-        if (!erInntakValid()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Villa í inntaki");
-            alert.setHeaderText(null);
-            alert.setContentText("Vinsamlegast fylltu inn réttar tölur áður en þú greiðir.");
-            alert.showAndWait();
+        // Athuga hvort allir reitir eru tómir
+        if (fxDosir.getText().isEmpty() && fxPlast.getText().isEmpty() && fxGler.getText().isEmpty()) {
+            sýnaVilluboð("Vinsamlegast fylltu inn að minnsta kosti eina tölu áður en þú greiðir.");
             return;
         }
 
+        // Reikna út og athuga hvort einhver gildi eru ógild
+        try {
+            int dosir = fxDosir.getText().isEmpty() ? 0 : Integer.parseInt(fxDosir.getText());
+            int plast = fxPlast.getText().isEmpty() ? 0 : Integer.parseInt(fxPlast.getText());
+            int gler = fxGler.getText().isEmpty() ? 0 : Integer.parseInt(fxGler.getText());
+
+            if (dosir < 0 || plast < 0 || gler < 0) {
+                sýnaVilluboð("Tölurnar mega ekki vera neikvæðar.");
+                return;
+            }
+
+            floskur.setFjoldiDosir(dosir);
+            floskur.setFjoldiFloskur(plast);
+            floskur.setFjoldiGler(gler);
+            uppfaeraUI();
+
+        } catch (NumberFormatException e) {
+            sýnaVilluboð("Vinsamlegast fylltu í reitina með réttum gildum.");
+            return;
+        }
+
+        // Uppfæra samtals
         samtalsDosir += floskur.getFjoldiDosir();
         samtalsPlast += floskur.getFjoldiPlast();
         samtalsGler += floskur.getFjoldiGler();
@@ -80,6 +99,7 @@ public class FloskurController {
         fxSumGreidaInput.setText(String.valueOf(samtalsDosir + samtalsPlast + samtalsGler));
         fxSumGreidaISK.setText(String.valueOf(samtalsISK));
 
+        // Birta kvittun
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vidmot/kvittun-view.fxml"));
             Parent root = loader.load();
@@ -111,14 +131,26 @@ public class FloskurController {
 
         if (fxHistoryList != null) {
             fxHistoryList.getItems().add(0, kvittunText);
-
             if (fxHistoryList.getItems().size() > 10) {
                 fxHistoryList.getItems().remove(10);
             }
         }
-
-
     }
+
+    // Hjálparaðferð til að sýna villuboð
+    private void sýnaVilluboð(String skilaboð) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Villa");
+        alert.setHeaderText(null);
+        alert.setContentText(skilaboð);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void onHaetta() {
+        System.exit(0);
+    }
+
 
     /** Handlerar til að tékka hvort input séu valid **/
     private boolean erInntakValid() {
@@ -214,6 +246,8 @@ public class FloskurController {
         fxPlast.clear();
         fxGler.clear();
         floskur.hreinsa();
+        fxSumGreidaISK.setText("0");
+        fxSumGreidaInput.setText("0");
         uppfaeraUI();
     }
 

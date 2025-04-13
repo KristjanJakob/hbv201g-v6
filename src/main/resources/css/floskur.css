@@ -53,6 +53,21 @@ VBox {
     -fx-border-color: #555;
 }
 
+.button.exit:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: red;
+    -fx-font-size: 18px;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: all 0.2s ease-in-out; /* Just for reference, not used directly */
+}
+
+.button.exit:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
 #labels {
     -fx-background-color: #d6d6d6;
 }

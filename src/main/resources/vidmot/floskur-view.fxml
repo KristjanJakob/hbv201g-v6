@@ -10,9 +10,19 @@
 <?import javafx.scene.control.Separator?>
 
 
+<?import javafx.scene.layout.Region?>
 <VBox stylesheets="@../css/floskur.css" xmlns:fx="http://javafx.com/fxml" fx:controller="vidmot.FloskurController" spacing="10" alignment="CENTER">
+    <HBox alignment="TOP_RIGHT">
+        <Button text="❌"
+                onAction="#onHaetta"
+                styleClass="exit"
+                style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: red; -fx-font-size: 18px;" />
+    </HBox>
+    <HBox alignment="CENTER">
+        <Label text="Flöskumóttaka ♻️" style="-fx-font-size: 24px;" />
+    </HBox>
+
     <HBox spacing="10">
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label text="Flöskumóttaka ♻️" /></VBox>
         <Button text="Opnunartími 🕒" onAction="#onOpnunartimi" />
         <Button text="Greiðslur" onAction="#onSidustuGreidslur" />
     </HBox>
