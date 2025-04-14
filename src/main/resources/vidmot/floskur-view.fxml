@@ -8,68 +8,75 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Pane?>
 
 
-<?import javafx.scene.layout.Region?>
-<VBox stylesheets="@../css/floskur.css" xmlns:fx="http://javafx.com/fxml" fx:controller="vidmot.FloskurController" spacing="10" alignment="CENTER">
-    <HBox alignment="TOP_RIGHT">
-        <Button text="❌"
-                onAction="#onHaetta"
-                styleClass="exit"
-                style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: red; -fx-font-size: 18px;" />
-    </HBox>
-    <HBox alignment="CENTER">
-        <Label text="Flöskumóttaka ♻️" style="-fx-font-size: 24px;" />
-    </HBox>
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="vidmot.FloskurController" stylesheets="@../css/floskur.css">
+        <VBox spacing="10" alignment="CENTER">
+            <HBox alignment="CENTER" spacing="10">
+                <Label text="Flöskumóttaka ♻️"
+                       style="-fx-font-size: 24px;"
+                       alignment="CENTER"
+                />
+            </HBox>
 
-    <HBox spacing="10">
-        <Button text="Opnunartími 🕒" onAction="#onOpnunartimi" />
-        <Button text="Greiðslur" onAction="#onSidustuGreidslur" />
-    </HBox>
 
-    <HBox alignment="CENTER">
-        <ListView fx:id="fxHistoryList" visible="false" managed="false" prefHeight="150" prefWidth="600" />
-    </HBox>
-    <Separator orientation="HORIZONTAL" prefWidth="600" />
 
-    <HBox spacing="10">
-        <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Tegund" /></VBox>
-        <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Magn" /></VBox>
-        <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Krónur" /></VBox>
-    </HBox>
-    <HBox spacing="10">
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label text="Ál" /></VBox>
-        <TextField fx:id="fxDosir" onAction="#onDosir" onKeyReleased="#onStafur" prefHeight="43.0" prefWidth="200.0" promptText="sláðu inn tölu" />
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label fx:id="fxISKDosir" text="0" /></VBox>
-    </HBox>
+            <HBox spacing="10">
+                <Button text="Opnunartími 🕒" onAction="#onOpnunartimi" />
+                <Button text="Greiðslur" onAction="#onSidustuGreidslur" />
+            </HBox>
 
-    <HBox spacing="10">
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label text="Plast" /></VBox>
-        <TextField fx:id="fxPlast" onAction="#onPlast" onKeyReleased="#onStafur" prefHeight="43.0" prefWidth="200.0" promptText="sláðu inn tölu" />
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label fx:id="fxISKPlast" text="0" /></VBox>
-    </HBox>
+            <HBox alignment="CENTER">
+                <ListView fx:id="fxHistoryList" visible="false" managed="false" prefHeight="150" prefWidth="600" />
+            </HBox>
+            <Separator orientation="HORIZONTAL" prefWidth="600" />
 
-    <HBox spacing="10">
-        <VBox><Label text="Gler" /></VBox>
-        <TextField fx:id="fxGler" onAction="#onGler" onKeyReleased="#onStafur" promptText="sláðu inn tölu" />
-        <VBox><Label fx:id="fxISKGler" text="0" /></VBox>
-    </HBox>
 
-    <Separator orientation="HORIZONTAL" prefWidth="600" />
+            <HBox spacing="10">
+                <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Tegund" /></VBox>
+                <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Magn" /></VBox>
+                <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Krónur" /></VBox>
+            </HBox>
+            <HBox spacing="10">
+                <VBox><Label text="Ál" /></VBox>
+                <TextField fx:id="fxDosir" onAction="#onDosir" onKeyReleased="#onStafur" promptText="sláðu inn tölu" />
+                <VBox><Label fx:id="fxISKDosir" text="0" /></VBox>
+            </HBox>
 
-    <HBox spacing="10">
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label text="Samtals" /></VBox>
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label fx:id="fxSumInput" text="0" /></VBox>
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label fx:id="fxSumISK" text="0" /></VBox>
-    </HBox>
+            <HBox spacing="10">
+                <VBox><Label text="Plast" /></VBox>
+                <TextField fx:id="fxPlast" onAction="#onPlast" onKeyReleased="#onStafur" promptText="sláðu inn tölu" />
+                <VBox><Label fx:id="fxISKPlast" text="0" /></VBox>
+            </HBox>
 
-    <HBox spacing="10">
-        <Button onAction="#onGreida" text="Greiða" />
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label fx:id="fxSumGreidaInput" text="0" /></VBox>
-        <VBox prefHeight="43.0" prefWidth="200.0"><Label fx:id="fxSumGreidaISK" text="0" /></VBox>
-    </HBox>
+            <HBox spacing="10">
+                <VBox><Label text="Gler" /></VBox>
+                <TextField fx:id="fxGler" onAction="#onGler" onKeyReleased="#onStafur" promptText="sláðu inn tölu" />
+                <VBox><Label fx:id="fxISKGler" text="0" /></VBox>
+            </HBox>
 
-    <HBox spacing="10">
-        <Button onAction="#onHreinsa" text="Hreinsa" />
-    </HBox>
-</VBox>
+            <Separator orientation="HORIZONTAL" prefWidth="600" />
+
+            <HBox spacing="10">
+                <VBox><Label text="Samtals" /></VBox>
+                <VBox><Label fx:id="fxSumInput" text="0" /></VBox>
+                <VBox><Label fx:id="fxSumISK" text="0" /></VBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button onAction="#onGreida" text="Greiða" />
+                <VBox><Label fx:id="fxSumGreidaInput" text="0" /></VBox>
+                <VBox><Label fx:id="fxSumGreidaISK" text="0" /></VBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button onAction="#onHreinsa" text="Hreinsa" />
+            </HBox>
+            <HBox spacing="10">
+                <Button text="Loka" fx:id="lokaButton" onAction="#onLoka" styleClass="exit"/>
+
+            </HBox>
+        </VBox>
+</StackPane>

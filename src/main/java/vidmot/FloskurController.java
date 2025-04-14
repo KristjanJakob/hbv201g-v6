@@ -147,10 +147,9 @@ public class FloskurController {
     }
 
     @FXML
-    private void onHaetta() {
+    private void onLoka() {
         System.exit(0);
     }
-
 
     /** Handlerar til að tékka hvort input séu valid **/
     private boolean erInntakValid() {

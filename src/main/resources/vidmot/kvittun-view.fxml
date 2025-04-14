@@ -8,16 +8,14 @@
 <?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="vidmot.KvittunController"
-      spacing="10" alignment="CENTER" stylesheets="@../css/floskur.css">
+      spacing="10" alignment="CENTER" style="-fx-background-color: #e6f4ea; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../css/floskur.css">
 
     <Label text="Kvittun" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
     <HBox spacing="40">
-        <Label text="Tegund" style="-fx-font-weight: bold;" />
-        <Label text="Magn" style="-fx-font-weight: bold;" />
+        <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Tegund" /></VBox>
+        <VBox id="labels" prefHeight="43.0" prefWidth="200.0"><Label text="Magn" /></VBox>
     </HBox>
-
-    <HBox spacing="40" style="-fx-border-color: gray; -fx-border-width: 1 0 0 0;" />
 
     <HBox spacing="20">
         <Label text="Ál:" />
