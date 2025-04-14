@@ -176,6 +176,16 @@ public class FloskurController {
 
         if (input.isEmpty()) {
             source.setStyle(null);
+
+            if (source == fxDosir) {
+                floskur.setFjoldiDosir(0);
+            } else if (source == fxPlast) {
+                floskur.setFjoldiFloskur(0);
+            } else if (source == fxGler) {
+                floskur.setFjoldiGler(0);
+            }
+
+            uppfaeraUI();
             return;
         }
 
@@ -198,6 +208,7 @@ public class FloskurController {
             source.setStyle("-fx-border-color: red;");
         }
     }
+
 
 
     /** Uppfærir fjölda dósir og UI **/
